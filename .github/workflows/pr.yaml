@@ -21,3 +21,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           title: "My pull request title"
+          commit-message: "Release"
+          author: "CI"
