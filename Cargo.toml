@@ -4,9 +4,8 @@ members = [
     "ksefbwjefvjwevf",
 ]
 
-#[workspace.package]
-#edition = "2021"
-#homepage = "https://www.rocsys.com"
-#publish = ["rocsys-rust"]
-#repository = "https://github.com/rocsys/rocsys-movement"
-#version = "0.1.0"
+[workspace.package]
+edition = "2021"
+homepage = "https://www.rocsys.com"
+publish = ["rocsys-rust"]
+version = "0.1.0"
