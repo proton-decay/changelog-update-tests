@@ -22,4 +22,4 @@ jobs:
         with:
           title: "My pull request title"
           commit-message: "Release"
-          author: "CI"
+          author: "CI <email@domain.test>"
