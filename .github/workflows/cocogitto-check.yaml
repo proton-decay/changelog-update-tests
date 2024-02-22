@@ -19,4 +19,4 @@ jobs:
         
       - name: Conventional commit check
         run: |
-          cog check v0.0.3..
+          cog check v0.0.3.. --ignore-merge-commits
