@@ -23,6 +23,7 @@ jobs:
       - name: bump
         run: |
           BUMPED_VERSION=$(git cliff --unreleased --bump --context | jq -r .[0].version)
+          echo $BUMPED_VERSION
           echo "bumped_version=$BUMPED_VERSION" >> "$GIT_OUTPUT"
           
       - name: update
