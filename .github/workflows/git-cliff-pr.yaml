@@ -9,20 +9,25 @@ permissions:
   pull-requests: write
 
 jobs:
-  update_routes:
+  update_release:
     runs-on: ubuntu-latest
     steps:
+      
       - uses: actions/checkout@v2
         with:
           persist-credentials: false
-      - name: insall_cliff
+          
+      - name: install_cliff
         run: cargo install git-cliff
+        
       - name: bump
         run: |
           BUMPED_VERSION=$(git cliff --unreleased --bump --context | jq -r .[0].version)
           echo "bumped_version=$BUMPED_VERSION" >> "$GIT_OUTPUT"
+          
       - name: update
         run: git cliff --bump > CHANGELOG.md
+        
       - uses: gr2m/create-or-update-pull-request-action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
