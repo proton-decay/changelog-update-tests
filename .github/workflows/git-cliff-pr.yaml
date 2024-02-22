@@ -1,0 +1,33 @@
+name: Git cliff update
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update_routes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+      - name: insall_cliff
+        run: cargo install git-cliff
+      - name: bump
+        run: |
+          BUMPED_VERSION=$(git cliff --unreleased --bump --context | jq -r .[0].version)
+          echo "bumped_version=$BUMPED_VERSION" >> "$GIT_OUTPUT"
+      - name: update
+        run: git cliff --bump > CHANGELOG.md
+      - uses: gr2m/create-or-update-pull-request-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          title: "chore: release ${{ steps.bump.outputs.bumped_version }}"
+          commit-message: "Release ${{ steps.bump.outputs.bumped_version }}"
+          author: "CI <email@domain.test>"
+          branch: "release-v${{ steps.bump.outputs.bumped_version }}"
