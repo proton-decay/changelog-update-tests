@@ -17,12 +17,14 @@ jobs:
         with:
           persist-credentials: false
           
-      - name: install_cliff
+      - name: Install Git Cliff
         run: cargo install git-cliff
         
-      - name: bump
+      - name: Bump version
+        id: bump
         run: |
           BUMPED_VERSION=$(git cliff --unreleased --bump --context | jq -r .[0].version)
+          echo "Bumped version: $BUMPED_VERSION"
           echo "bumped_version=$BUMPED_VERSION" >> "$GITHUB_OUTPUT"
           
       - name: update
