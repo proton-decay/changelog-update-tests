@@ -9,7 +9,14 @@ jobs:
         with:
           fetch-depth: 0
 
+      - id: install_cocogitto
+        run: cargo install cocogitto
+        
+      #- name: Conventional commit check
+      #  uses: cocogitto/cocogitto-action@v3
+      #  with:
+      #    check-latest-tag-only: true
+        
       - name: Conventional commit check
-        uses: cocogitto/cocogitto-action@v3
-        with:
-          check-latest-tag-only: true
+        run: |
+          cog check v0.0.3..
