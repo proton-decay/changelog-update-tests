@@ -45,4 +45,4 @@ jobs:
           title: "chore: release ${{ steps.bump.outputs.bumped_version }}"
           commit-message: "Release ${{ steps.bump.outputs.bumped_version }}"
           author: "CI <email@domain.test>"
-          branch: "release-v${{ steps.bump.outputs.bumped_version }}"
+          branch: "release-${{ steps.bump.outputs.bumped_version }}"
