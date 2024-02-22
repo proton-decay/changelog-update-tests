@@ -1,22 +1,15 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
-This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.0.1] - 2023-12-22
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-### Features
+## [0.1.0] - 2024-02-22
 
-- Add release-plz for automated release
-- Robot model parsing
-- Add legacy path-planning server skeleton
-- Add startup code
-- Movement executor
+### Fix
 
-### Refactor
-
-- Update terminology
-- Robot-model adapter
-- Move from Vec to HashMap where possible
+- Output
 
 
+Old entries
