@@ -11,6 +11,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - Experiment 1
 - Experiment 2
 - Experiment 3
+- Release v0.1.0
 
 ### Feat
 
@@ -31,6 +32,8 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - Depth
 - Fixes
 - Fix
+- 1
+- 2
 
 ### Test
 
