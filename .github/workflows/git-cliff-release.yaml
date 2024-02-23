@@ -21,6 +21,7 @@ jobs:
     name: Create release tag based on conventional commits
     if: ${{ github.event.pull_request.merged && startsWith(github.head_ref, 'release/') }}
     runs-on: ubuntu-latest
+    permissions: write-all
     steps:
       - uses: actions/checkout@v4
       
@@ -39,7 +40,6 @@ jobs:
         uses: actions-ecosystem/action-get-latest-tag@v1
 
       - name: Create release tag
-        permissions: write-all
         uses: actions-ecosystem/action-push-tag@v1
         with:
           tag: ${{ steps.bump.outputs.bumped_version }}
