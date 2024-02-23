@@ -31,6 +31,10 @@ jobs:
           echo "Bumped version: $BUMPED_VERSION"
           echo "bumped_version=$BUMPED_VERSION" >> "$GITHUB_OUTPUT"
 
+      # This step is needed as a workaround for the bug where GitHub reports 'not in a git directory'.
+      - name: Get latest version from tag
+        uses: actions-ecosystem/action-get-latest-tag@v1
+
       - name: Create release tag
         uses: actions-ecosystem/action-push-tag@v1
         with:

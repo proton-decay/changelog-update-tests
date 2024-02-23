@@ -1,4 +1,4 @@
-name: Git cliff update
+name: Update release PR
 on:
   push:
     branches:
