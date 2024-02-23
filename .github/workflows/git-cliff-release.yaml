@@ -8,7 +8,7 @@ on:
 jobs:
   create-release-tag:
     name: Create release tag based on conventional commits
-    if: ${{ startsWith(github.event.pull_request.head.ref, 'release/') }}
+    if: ${{ startsWith(github.event.push.head.ref, 'release/') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
