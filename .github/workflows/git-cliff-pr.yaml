@@ -39,6 +39,6 @@ jobs:
         with:
           add-paths: CHANGELOG.md
           title: "chore: release ${{ steps.bump.outputs.bumped_version }}"
-          commit-message: "chore release ${{ steps.bump.outputs.bumped_version }}"
+          commit-message: "chore: release ${{ steps.bump.outputs.bumped_version }}"
           branch: "release/${{ steps.bump.outputs.bumped_version }}"
         
