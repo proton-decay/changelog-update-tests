@@ -21,7 +21,7 @@ jobs:
           echo "bumped_version=$BUMPED_VERSION" >> "$GITHUB_OUTPUT"
 
       - name: Create release tag
-        uses: actions-ecosystem/action-push-tag/v1
+        uses: actions-ecosystem/action-push-tag@v1
         with:
           tag: ${{ steps.bump.outputs.bumped_version }}
     
