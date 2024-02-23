@@ -16,6 +16,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - Release v0.1.0
 - Release v0.1.0
 - Release v0.1.0
+- Release v0.1.0
 
 ### Feat
 
@@ -27,6 +28,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - Tag
 - Debug 1
 - Debug 2
+- Bug
 
 ### Fix
 
@@ -41,6 +43,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - 1
 - 2
 - Fix if
+- Install cliff
 
 ### Test
 
