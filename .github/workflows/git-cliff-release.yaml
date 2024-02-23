@@ -1,0 +1,27 @@
+name: Release
+
+on:
+  pull_request:
+    branches: [ main ]
+    type: [ closed ]
+
+jobs:
+  create-release-tag:
+    name: Create release tag based on conventional commits
+    if: ${{ github.event.pull_request.merged && startsWith(github.event.pull_request.head.ref, 'release/') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Bump version
+        id: bump
+        run: |
+          BUMPED_VERSION=$(git cliff --unreleased --bump --context | jq -r .[0].version)
+          echo "Bumped version: $BUMPED_VERSION"
+          echo "bumped_version=$BUMPED_VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Create release tag
+        uses: actions-ecosystem/action-push-tag@v1
+        with:
+          tag: ${{ steps.bump.outputs.bumped_version }}
+    
