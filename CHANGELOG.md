@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.0] - 2024-02-23
+
+### Feat
+
+- Test 1
+- Breaking
+- Test 10
+
 ## [0.1.0] - 2024-02-23
 
 ### Chore
@@ -11,6 +19,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - Experiment 1
 - Experiment 2
 - Experiment 3
+- Release v0.1.0
 - Release v0.1.0
 - Release v0.1.0
 - Release v0.1.0
@@ -48,6 +57,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - Install cliff
 - Permissions
 - Permissions
+- Depth
 
 ### Test
 
