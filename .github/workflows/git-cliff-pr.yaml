@@ -30,27 +30,15 @@ jobs:
           
       - name: update
         run: |
-          echo ------------------------------
-          git cliff --bump
-          echo ------------------------------
           git cliff --bump > CHANGELOG.md
           echo ------------------------------
           cat CHANGELOG.md
           echo ------------------------------
         
-      #- uses: gr2m/create-or-update-pull-request-action@v1
-      #  env:
-      #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #  with:
-      #    title: "chore: release ${{ steps.bump.outputs.bumped_version }}"
-      #    commit-message: "Release ${{ steps.bump.outputs.bumped_version }}"
-      #    author: "CI <email@domain.test>"
-      #    branch: "release-${{ steps.bump.outputs.bumped_version }}"
-
       - uses: peter-evans/create-pull-request@v6
         with:
           add-paths: CHANGELOG.md
           title: "chore: release ${{ steps.bump.outputs.bumped_version }}"
           commit-message: "chore release ${{ steps.bump.outputs.bumped_version }}"
-          branch: "release-${{ steps.bump.outputs.bumped_version }}"
+          branch: "release/${{ steps.bump.outputs.bumped_version }}"
         
