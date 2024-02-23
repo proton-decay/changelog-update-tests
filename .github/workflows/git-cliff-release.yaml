@@ -39,7 +39,8 @@ jobs:
         uses: actions-ecosystem/action-get-latest-tag@v1
 
       - name: Create release tag
+        permissions: write-all
         uses: actions-ecosystem/action-push-tag@v1
         with:
           tag: ${{ steps.bump.outputs.bumped_version }}
-    
+
