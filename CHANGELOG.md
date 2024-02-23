@@ -14,6 +14,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - Release v0.1.0
 - Release v0.1.0
 - Release v0.1.0
+- Release v0.1.0
 
 ### Feat
 
@@ -23,6 +24,8 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - 3234
 - Create pull request
 - Tag
+- Debug 1
+- Debug 2
 
 ### Fix
 
