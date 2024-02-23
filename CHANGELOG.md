@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [1.3.0] - 2024-02-23
 
+### Chore
+
+- Release v1.3.0
+
 ### Feat
 
 - Feat 2
