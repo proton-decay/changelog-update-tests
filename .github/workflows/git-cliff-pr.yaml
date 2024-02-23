@@ -11,7 +11,7 @@ permissions:
 jobs:
   update_release:
     runs-on: ubuntu-latest
-    if: ${{ !startsWith(github.head_ref, 'main') }}
+    if: ${{ github.head_ref != 'main' }}
     steps:
       
       - name: Checkout repository
