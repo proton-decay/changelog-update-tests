@@ -15,6 +15,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - Release v0.1.0
 - Release v0.1.0
 - Release v0.1.0
+- Release v0.1.0
 
 ### Feat
 
