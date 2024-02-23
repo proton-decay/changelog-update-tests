@@ -9,9 +9,18 @@ permissions:
   pull-requests: write
 
 jobs:
+  debug:
+    name: debug
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo Merged ${{ github.event.pull_request.merged }}
+          echo Ref ${{ github.event.push.head.ref }}
+          echo Ref ${{ github.head_ref }}
+
   update_release:
     runs-on: ubuntu-latest
-    if: ${{ github.head_ref != 'main' }}
+    if: ${{ !startsWith(github.head_ref, 'release/') }}
     steps:
       
       - name: Checkout repository
