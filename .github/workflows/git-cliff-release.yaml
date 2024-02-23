@@ -24,6 +24,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
+      - name: Install Git Cliff
+        run: cargo install git-cliff
+        
       - name: Bump version
         id: bump
         run: |
