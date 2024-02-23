@@ -1,11 +1,9 @@
 name: Release
 
 on:
-  pull_request:
+  push:
     branches:
       - main
-    types:
-      - closed
 
 jobs:
   debug:
@@ -19,11 +17,13 @@ jobs:
 
   create-release-tag:
     name: Create release tag based on conventional commits
-    if: ${{ github.event.pull_request.merged && startsWith(github.head_ref, 'release/') }}
+    #if: ${{ github.event.pull_request.merged && startsWith(github.head_ref, 'release/') }}
     runs-on: ubuntu-latest
     permissions: write-all
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       
       - name: Install Git Cliff
         run: cargo install git-cliff
