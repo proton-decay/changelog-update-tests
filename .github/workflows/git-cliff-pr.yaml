@@ -1,8 +1,11 @@
 name: Update release PR
+
 on:
-  push:
+  pull_request:
     branches:
       - main
+    types:
+      - closed
 
 permissions:
   contents: write
@@ -20,7 +23,7 @@ jobs:
 
   update_release:
     runs-on: ubuntu-latest
-    if: ${{ !startsWith(github.head_ref, 'release/') }}
+    if: ${{ github.event.pull_request.merged && !startsWith(github.head_ref, 'release/') }}
     steps:
       
       - name: Checkout repository
