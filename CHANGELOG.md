@@ -3,7 +3,17 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.0] - 2024-02-26
+
+### Feat
+
+- Minor
+
 ## [1.4.0] - 2024-02-26
+
+### Chore
+
+- Release v1.4.0
 
 ### Feat
 
