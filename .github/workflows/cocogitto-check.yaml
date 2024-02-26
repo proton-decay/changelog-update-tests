@@ -4,24 +4,17 @@ on: [push]
 
 jobs:
   cog_check_job:
-    runs-on: ubuntu-latest
     name: check conventional commit compliance
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      - id: install_cocogitto
+      - name: Install cocogitto
         run: cargo install cocogitto
-        
-      #- name: Conventional commit check
-      #  uses: cocogitto/cocogitto-action@v3
-      #  with:
-      #    check-latest-tag-only: true
         
       - name: Conventional commit check
         run: |
           cog check v0.0.3.. --ignore-merge-commits
 
-      - run: |
-          jq

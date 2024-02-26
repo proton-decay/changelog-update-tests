@@ -1,0 +1,80 @@
+name: Automatic release PR and tagging
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - closed
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+
+  update-pr:
+    name: Create a PR with an update to the CHANGELOG.md
+    if: ${{ github.event.pull_request.merged && !startsWith(github.head_ref, 'autorelease/') }}
+    runs-on: ubuntu-latest
+    
+    steps:
+      
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          
+      - name: Install Git Cliff
+        run: cargo install git-cliff
+        
+      - name: Bump version
+        id: bump
+        run: |
+          BUMPED_VERSION=$(git cliff --unreleased --bump --context | jq -r .[0].version)
+          echo "Bumped version: $BUMPED_VERSION"
+          echo "bumped_version=$BUMPED_VERSION" >> "$GITHUB_OUTPUT"
+          
+      - name: update
+        run: |
+          git cliff --bump > CHANGELOG.md
+          echo ------------------------------
+          cat CHANGELOG.md
+          echo ------------------------------
+        
+      - uses: peter-evans/create-pull-request@v6
+        with:
+          add-paths: CHANGELOG.md
+          title: "chore: release ${{ steps.bump.outputs.bumped_version }}"
+          commit-message: "chore: release ${{ steps.bump.outputs.bumped_version }}"
+          branch: "autorelease/${{ steps.bump.outputs.bumped_version }}"
+        
+  create-release-tag:
+    name: Create release tag based on conventional commits
+    if: ${{ github.event.pull_request.merged && startsWith(github.head_ref, 'autorelease/') }}
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Install Git Cliff
+        run: cargo install git-cliff
+        
+      - name: Bump version
+        id: bump
+        run: |
+          BUMPED_VERSION=$(git cliff --unreleased --bump --context | jq -r .[0].version)
+          echo "Bumped version: $BUMPED_VERSION"
+          echo "bumped_version=$BUMPED_VERSION" >> "$GITHUB_OUTPUT"
+
+      # This step is needed as a workaround for the bug where GitHub reports 'not in a git directory'.
+      - name: Get latest version from tag
+        uses: actions-ecosystem/action-get-latest-tag@v1
+
+      - name: Create release tag
+        uses: actions-ecosystem/action-push-tag@v1
+        with:
+          tag: ${{ steps.bump.outputs.bumped_version }}
+
