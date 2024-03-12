@@ -34,18 +34,22 @@ jobs:
           BUMPED_VERSION=$(git cliff --unreleased --bump --context | jq -r .[0].version)
           echo "Bumped version: $BUMPED_VERSION"
           echo "bumped_version=$BUMPED_VERSION" >> "$GITHUB_OUTPUT"
-          
+
+      - name: Generate PR body
+        id: pr-body
+        run: |
+          PR_BODY=$(git cliff --unreleased --bump --strip=all)
+          echo "body=$PR_BODY" >> "$GITHUB_OUTPUT"
+
       - name: update
         run: |
-          git cliff --bump > CHANGELOG.md
-          echo ------------------------------
-          cat CHANGELOG.md
-          echo ------------------------------
-        
+          git cliff --unreleased --bump --prepend CHANGELOG.md
+
       - uses: peter-evans/create-pull-request@v6
         with:
           add-paths: CHANGELOG.md
           title: "chore: release ${{ steps.bump.outputs.bumped_version }}"
+          body: "${{ steps.pr-body.outputs.body }}"
           commit-message: "chore: release ${{ steps.bump.outputs.bumped_version }}"
           branch: "autorelease/${{ steps.bump.outputs.bumped_version }}"
         
