@@ -35,16 +35,6 @@ jobs:
           echo "Bumped version: $BUMPED_VERSION"
           echo "bumped_version=$BUMPED_VERSION" >> "$GITHUB_OUTPUT"
 
-      - name: Generate PR body
-        id: pr-body
-        run: |
-          PR_BODY=$(git cliff --unreleased --bump --strip=all)
-          {
-            echo 'body=<<EOF'
-            $PR_BODY
-            echo EOF
-          } >> "$GITHUB_OUTPUT"
-
       - name: update
         run: |
           git cliff --unreleased --bump --prepend CHANGELOG.md
@@ -53,7 +43,6 @@ jobs:
         with:
           add-paths: CHANGELOG.md
           title: "chore: release ${{ steps.bump.outputs.bumped_version }}"
-          body: "${{ steps.pr-body.outputs.body }}"
           commit-message: "chore: release ${{ steps.bump.outputs.bumped_version }}"
           branch: "autorelease/${{ steps.bump.outputs.bumped_version }}"
         
