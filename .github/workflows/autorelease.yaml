@@ -64,6 +64,12 @@ jobs:
         with:
           current_version: ${{ steps.tag-version.outputs.tag }}
           level: prerelease
+
+      - name: Create bumped release candidate tag
+        if: ${{ steps.bump-rc.outcome == 'success' }}
+        uses: actions-ecosystem/action-push-tag@v1
+        with:
+          tag: ${{ steps.bump-rc.outputs.new_version }}
         
   create-release-tag:
     name: Create release tag based on conventional commits
