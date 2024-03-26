@@ -65,11 +65,23 @@ jobs:
           current_version: ${{ steps.tag-version.outputs.tag }}
           level: prerelease
 
+      - name: Get current version
+        id: correct-version
+        if: ${{ steps.bump-rc.outcome == 'success' }}
+        shell: bash
+        run: |
+          if [[ ${{ steps.tag-version.outputs.tag }}-0 == ${{ steps.bump-rc.outputs.new_version }} ]]
+          then
+            echo "version=${{ steps.tag-version.outputs.tag }}-rc.0" >> $GITHUB_OUTPUT
+          else
+            echo "version=${{ steps.bump-rc.outputs.new_version }}" >> $GITHUB_OUTPUT
+          fi
+
       - name: Create bumped release candidate tag
         if: ${{ steps.bump-rc.outcome == 'success' }}
         uses: actions-ecosystem/action-push-tag@v1
         with:
-          tag: ${{ steps.bump-rc.outputs.new_version }}
+          tag: ${{ steps.correct-version.outputs.version }}
         
   create-release-tag:
     name: Create release tag based on conventional commits
