@@ -70,9 +70,9 @@ jobs:
         if: ${{ steps.bump-rc.outcome == 'success' }}
         shell: bash
         run: |
-          if [[ ${{ steps.tag-version.outputs.tag }}-0 == ${{ steps.bump-rc.outputs.new_version }} ]]
+          if [[ '${{ steps.tag-version.outputs.tag }}' == '*-0' ]]
           then
-            echo "version=${{ steps.tag-version.outputs.tag }}-rc.0" >> $GITHUB_OUTPUT
+            echo "version=${{ steps.bump.outputs.bumped_version }}-rc.0" >> $GITHUB_OUTPUT
           else
             echo "version=${{ steps.bump-rc.outputs.new_version }}" >> $GITHUB_OUTPUT
           fi
