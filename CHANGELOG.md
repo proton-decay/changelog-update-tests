@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.1.0] - 2024-03-26
+
+### Feat
+
+- Exp 1
+- Some
+- Test 41
+- Test 42
+- Test 43
+- Test 44
+- Test 45
+- 50
+- Test 51
+- Test 52
+- Test 53
+
+### Fix
+
+- Some
+
 ## [3.0.0] - 2024-02-26
 
 ### Feat
