@@ -53,6 +53,17 @@ jobs:
           body: "${{ steps.pr-body.outputs.body }}"
           commit-message: "chore: release ${{ steps.bump.outputs.bumped_version }}"
           branch: "autorelease/${{ steps.bump.outputs.bumped_version }}"
+
+      - name: Get latest version from tag
+        id: tag-version
+        uses: actions-ecosystem/action-get-latest-tag@v1
+
+      - name: Bump release candidate version
+        id: bump-rc
+        uses: actions-ecosystem/action-bump-semver@v1
+        with:
+          current_version: ${{ steps.tag-version.outputs.tag }}
+          level: prerelease
         
   create-release-tag:
     name: Create release tag based on conventional commits
